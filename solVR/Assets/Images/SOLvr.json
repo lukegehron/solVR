@@ -1,0 +1,7 @@
+{
+       "name": "SOLvr",
+       "dataColors": ["#dfa817", "#da942a", "#d37d3f", "#ce6754", "#c54672", "#395bd8", "#0c0c55", "#06062b"],
+       "background":"#FFFFFF",
+       "foreground": "#3A6108",
+       "tableAccent": "#568410"
+   }
