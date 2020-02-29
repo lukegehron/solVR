@@ -26,6 +26,7 @@ public class Material_Modification_AT : MonoBehaviour
 
     void Start()
     {
+        fritOnOff.onClick.AddListener(buttonClicked);
         //grab the current color of the glass material
         tintColor = glassMaterial.color;
         fritScale = glassMaterial.GetTextureScale("_BaseMap");
