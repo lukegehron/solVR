@@ -124,7 +124,7 @@ public class GHLoader : MonoBehaviour
             counter1 = 0.0f;
         }
 
-        Debug.Log(counter1);
+        //Debug.Log(counter1);
         
     }
 
