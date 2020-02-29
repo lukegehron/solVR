@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Material_Modification_AT : MonoBehaviour
 
 {
@@ -10,6 +11,11 @@ public class Material_Modification_AT : MonoBehaviour
     public Material glassMaterial;
     public Slider tintColorSlider; 
     private Color tintColor;
+
+    
+    //for sun light
+    public Light sunLight;
+    private float shadowBias;
 
     //for frit on/off control
     public Button fritOnOff;
@@ -30,7 +36,8 @@ public class Material_Modification_AT : MonoBehaviour
         //grab the current color of the glass material
         tintColor = glassMaterial.color;
         fritScale = glassMaterial.GetTextureScale("_BaseMap");
-        
+        //grab the shadow Bias Depth value
+        shadowBias = sunLight.shadowBias;
     }
 
 
@@ -43,6 +50,9 @@ public class Material_Modification_AT : MonoBehaviour
         //sets the modified color value back to the glass material 
         glassMaterial.SetColor("_BaseColor", tintColor);
 
+        //convert the value to 1 to 0 with absolute value and assign back to Depth Bias
+        shadowBias = Mathf.Abs(tintColorSlider.value-1);
+        sunLight.shadowBias = shadowBias;
 
         //creates a new vector2 for scaling using the fritScaleSlider value
         Vector2 newFritScale = new Vector2(fritScale.x*fritScaleSlider.value, fritScale.y*fritScaleSlider.value);
