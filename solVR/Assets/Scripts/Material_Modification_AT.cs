@@ -6,25 +6,32 @@ using UnityEngine.UI;
 public class Material_Modification_AT : MonoBehaviour
 
 {
-    //grab the glass material assigned in the editor
+    //for tint color control
     public Material glassMaterial;
-    
-    //this slider will control the alpha channel values of the original color tint for the glass material 
-    public Slider tintColorSlider;
-
-    //this will store the color tint value of the glass material
+    public Slider tintColorSlider; 
     private Color tintColor;
 
-    public Button fritOnOff;
-    public Slider fritScaleSlider;
 
-    private float fritScale;
+    //for frit on/off control
+    public Button fritOnOff;
+    public GameObject fritPanels;
+    private bool fritToggle = false; 
+
+    //for frit scaling control
+    public Slider fritScaleSlider;
+    public Material fritGlassMat;
+    private Vector2 fritScale;
+    
+
 
     void Start()
     {
         //grab the current color of the glass material
         tintColor = glassMaterial.color;
+        fritScale = glassMaterial.GetTextureScale("_BaseMap");
+        
     }
+
 
 
     void Update()
@@ -34,5 +41,21 @@ public class Material_Modification_AT : MonoBehaviour
 
         //sets the modified color value back to the glass material 
         glassMaterial.SetColor("_BaseColor", tintColor);
+
+
+        //creates a new vector2 for scaling using the fritScaleSlider value
+        Vector2 newFritScale = new Vector2(fritScale.x*fritScaleSlider.value, fritScale.y*fritScaleSlider.value);
+        //assigns the new fritscale to the main texture of the GlassFirt Material
+        fritGlassMat.SetTextureScale("_BaseMap", newFritScale);
+        
     }
+
+
+    public void buttonClicked()
+    {
+        fritToggle = !fritToggle;
+
+        fritPanels.SetActive(fritToggle);
+    }
+
 }
