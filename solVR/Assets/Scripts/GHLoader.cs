@@ -115,7 +115,7 @@ public class GHLoader : MonoBehaviour
                             break;
                         default:
                             break;
-                     
+
                     }
 
                     var ghInput = new GHInput(componetName, inputName, value);
@@ -133,12 +133,11 @@ public class GHLoader : MonoBehaviour
         UpdateMesh();
         counter1 += 0.05f;
 
-        if (counter1 > 100.0f) { 
+        if (counter1 > 100.0f) {
             counter1 = 0.0f;
         }
 
-        Debug.Log(mFloats[0] + ", " + mFloats[1] + ", " +  mFloats[2] + ", " + mFloats[3]);
-        
+
     }
 
     private void UpdateMesh()
@@ -209,7 +208,7 @@ public class GHLoader : MonoBehaviour
     {
         return new Vector3(pf.X, pf.Z, pf.Y);
     }
-    
+
     public static Vector3 Vector3fToVector3(Rhino.Geometry.Vector3f pf)
     {
         return new Vector3(pf.X, pf.Z, pf.Y);
@@ -310,7 +309,7 @@ public class GHLoader : MonoBehaviour
                         var sliderVal = GUI.HorizontalSlider(new Rect(offset + ((width-10)/3f +5) *n, 25+30+60*i, (width-10)/3f, 30), ((float[])ghInput.value)[n], 0f, 1.0f);
                         if(((float[])ghInput.value)[n] !=sliderVal){
                             ((float[])ghInput.value)[n] = sliderVal;
-                            
+
                             SendGHData();
                         }
                     }
