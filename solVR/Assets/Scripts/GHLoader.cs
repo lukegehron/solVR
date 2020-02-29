@@ -303,8 +303,8 @@ public class GHLoader : MonoBehaviour
                     break;
                 case "Number":
                     if(ghInput.value == null) { ghInput.value = 0.5f; }
-                    var sFVal = floatSlider.value;
-                    //var sFVal = GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (float)ghInput.value, 0f, 1f);
+                    //var sFVal = floatSlider.value;
+                    var sFVal = GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (float)ghInput.value, 0f, 1f);
                     if ((float)ghInput.value != sFVal)
                     {
                         ghInput.value = sFVal;
@@ -313,9 +313,9 @@ public class GHLoader : MonoBehaviour
                     break;
                 case "Integer":
                     if (ghInput.value == null) { ghInput.value = 10; }
-                    var sIVal = (int)intSlider.value;
-                    sIVal = (int)counter1;
-                    //var sIVal = (int)GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (int)ghInput.value, 0, 100);
+                    //var sIVal = (int)intSlider.value;
+                    //sIVal = (int)counter1;
+                    var sIVal = (int)GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (int)ghInput.value, 0, 100);
                     if ((int)ghInput.value != sIVal)
                     {
                         ghInput.value = sIVal;
