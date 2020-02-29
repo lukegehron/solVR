@@ -16,6 +16,14 @@ public class GHLoader : MonoBehaviour
     public Slider floatSlider;
     public Slider intSlider;
 
+    public float slider1 = 0.0f;
+    public float slider2 = 0.0f;
+    public float slider3 = 0.0f;
+    public float slider4 = 0.0f;
+
+
+    public float[] mFloats = new float[4];
+
     public string authToken;
     public string ghFile = "";
     public string serviceUrl = "http://localhost:8081";
@@ -33,7 +41,12 @@ public class GHLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        mFloats[0] = slider1;
+        mFloats[1] = slider2;
+        mFloats[2] = slider3;
+        mFloats[3] = slider4;
+
         //ComputeServer.AuthToken = authToken;
         //ComputeServer.WebAddress = "https://compute.rhino3d.com";
         client = new RestClient(serviceUrl);
@@ -102,7 +115,7 @@ public class GHLoader : MonoBehaviour
                             break;
                         default:
                             break;
-                     
+
                     }
 
                     var ghInput = new GHInput(componetName, inputName, value);
@@ -120,12 +133,11 @@ public class GHLoader : MonoBehaviour
         UpdateMesh();
         counter1 += 0.05f;
 
-        if (counter1 > 100.0f) { 
+        if (counter1 > 100.0f) {
             counter1 = 0.0f;
         }
 
-        Debug.Log(counter1);
-        
+
     }
 
     private void UpdateMesh()
@@ -196,7 +208,7 @@ public class GHLoader : MonoBehaviour
     {
         return new Vector3(pf.X, pf.Z, pf.Y);
     }
-    
+
     public static Vector3 Vector3fToVector3(Rhino.Geometry.Vector3f pf)
     {
         return new Vector3(pf.X, pf.Z, pf.Y);
@@ -297,6 +309,7 @@ public class GHLoader : MonoBehaviour
                         var sliderVal = GUI.HorizontalSlider(new Rect(offset + ((width-10)/3f +5) *n, 25+30+60*i, (width-10)/3f, 30), ((float[])ghInput.value)[n], 0f, 1.0f);
                         if(((float[])ghInput.value)[n] !=sliderVal){
                             ((float[])ghInput.value)[n] = sliderVal;
+
                             SendGHData();
                         }
                     }
@@ -308,17 +321,19 @@ public class GHLoader : MonoBehaviour
                     if ((float)ghInput.value != sFVal)
                     {
                         ghInput.value = sFVal;
+                        mFloats[i] = sFVal;
                         SendGHData();
                     }
                     break;
                 case "Integer":
                     if (ghInput.value == null) { ghInput.value = 10; }
                     //var sIVal = (int)intSlider.value;
-                    //sIVal = (int)counter1;
+                    ////sIVal = (int)counter1;
                     var sIVal = (int)GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (int)ghInput.value, 0, 100);
                     if ((int)ghInput.value != sIVal)
                     {
                         ghInput.value = sIVal;
+                        mFloats[i] = sIVal;
                         SendGHData();
                     }
                     break;
