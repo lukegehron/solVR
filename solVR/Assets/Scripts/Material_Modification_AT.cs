@@ -11,7 +11,6 @@ public class Material_Modification_AT : MonoBehaviour
     public Slider tintColorSlider; 
     private Color tintColor;
 
-
     //for frit on/off control
     public Button fritOnOff;
     public GameObject fritPanels;
@@ -26,6 +25,7 @@ public class Material_Modification_AT : MonoBehaviour
 
     void Start()
     {
+        //trigger the buttonClicked function whenever the button is clicked 
         fritOnOff.onClick.AddListener(buttonClicked);
         //grab the current color of the glass material
         tintColor = glassMaterial.color;
@@ -47,8 +47,7 @@ public class Material_Modification_AT : MonoBehaviour
         //creates a new vector2 for scaling using the fritScaleSlider value
         Vector2 newFritScale = new Vector2(fritScale.x*fritScaleSlider.value, fritScale.y*fritScaleSlider.value);
         //assigns the new fritscale to the main texture of the GlassFirt Material
-        fritGlassMat.SetTextureScale("_BaseMap", newFritScale);
-        
+        fritGlassMat.SetTextureScale("_BaseMap", newFritScale);        
     }
 
 
