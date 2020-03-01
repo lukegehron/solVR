@@ -22,7 +22,7 @@ public class GHLoader : MonoBehaviour
     public float slider4 = 0.0f;
 
 
-    public float[] mFloats = new float[4];
+    public static float[] mFloats = new float[4];
 
     public string authToken;
     public string ghFile = "";
@@ -136,6 +136,8 @@ public class GHLoader : MonoBehaviour
         if (counter1 > 100.0f) {
             counter1 = 0.0f;
         }
+
+
 
 
     }
@@ -292,48 +294,45 @@ public class GHLoader : MonoBehaviour
             int offset = 25;
             int width = 150;
 
-            GUI.Label(new Rect(offset, offset + 60 * i, width, 30), ghInput.label);
+            //GUI.Label(new Rect(offset, offset + 60 * i, width, 30), ghInput.label);
             switch (ghInput.componentName)
             {
-                case "Point":
-                    if(ghInput.value == null)
-                    {
-                        ghInput.value = new float[3];
-                        for(int n=0; n< 3; n++)
-                        {
-                            ((float[])ghInput.value)[n] = 0.5f;
-                        }
-                    }
-                    for(int n=0; n<3; n++)
-                    {
-                        var sliderVal = GUI.HorizontalSlider(new Rect(offset + ((width-10)/3f +5) *n, 25+30+60*i, (width-10)/3f, 30), ((float[])ghInput.value)[n], 0f, 1.0f);
-                        if(((float[])ghInput.value)[n] !=sliderVal){
-                            ((float[])ghInput.value)[n] = sliderVal;
-
-                            SendGHData();
-                        }
-                    }
-                    break;
+                
                 case "Number":
                     if(ghInput.value == null) { ghInput.value = 0.5f; }
                     //var sFVal = floatSlider.value;
-                    var sFVal = GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (float)ghInput.value, 0f, 1f);
+                    var sFVal = Material_Modification_AT.mFloats[i];
+
+                    //var sFVal = GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (float)ghInput.value, 0f, 1f);
                     if ((float)ghInput.value != sFVal)
                     {
+
+
+
+
+                        //mFloats[i] = sFVal;
+
                         ghInput.value = sFVal;
-                        mFloats[i] = sFVal;
+
+
+
+
+
                         SendGHData();
                     }
                     break;
                 case "Integer":
                     if (ghInput.value == null) { ghInput.value = 10; }
-                    //var sIVal = (int)intSlider.value;
+                    var sIVal = (int)Material_Modification_AT.mFloats[i];
                     ////sIVal = (int)counter1;
-                    var sIVal = (int)GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (int)ghInput.value, 0, 100);
+                    //var sIVal = (int)GUI.HorizontalSlider(new Rect(offset, offset + 30 + 60 * i, width, 30), (int)ghInput.value, 0, 100);
                     if ((int)ghInput.value != sIVal)
                     {
                         ghInput.value = sIVal;
-                        mFloats[i] = sIVal;
+                        //mFloats[i] = sIVal;
+
+                        ghInput.value = mFloats[i];
+
                         SendGHData();
                     }
                     break;
